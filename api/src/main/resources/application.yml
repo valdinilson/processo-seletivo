@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /
+  error:
+    include-stacktrace: on_param
+
+spring:
+  application:
+    name: processo-seletivo-api
+  threads:
+    virtual:
+      enabled: true
