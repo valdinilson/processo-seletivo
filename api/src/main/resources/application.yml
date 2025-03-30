@@ -1,4 +1,6 @@
 app:
+  token:
+    expire-in-minutes: 5
   allowed-api: http://localhost:8080
   minio:
     endpoint: ${APP_MINIO_ENDPOINT}
@@ -22,18 +24,3 @@ spring:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-  jpa:
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        current_session_context_class: thread
-        format_sql: true
-
-logging:
-  level:
-    org.springdoc: DEBUG
-    org.springdoc.api.AbstractOpenApiResource: TRACE
