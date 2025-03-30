@@ -1,3 +1,11 @@
+app:
+  allowed-api: http://localhost:8080
+  minio:
+    endpoint: ${APP_MINIO_ENDPOINT}
+    accesskey: ${APP_MINIO_ACCESSKEY}
+    secretkey: ${APP_MINIO_SECRETKEY}
+    bucketname: ${APP_MINIO_BUCKETNAME}
+
 server:
   servlet:
     context-path: /
@@ -14,3 +22,18 @@ spring:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        current_session_context_class: thread
+        format_sql: true
+
+logging:
+  level:
+    org.springdoc: DEBUG
+    org.springdoc.api.AbstractOpenApiResource: TRACE
