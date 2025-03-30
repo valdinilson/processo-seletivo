@@ -42,7 +42,11 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private Set<Lotacao> lotacoes;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(name = "pessoa_endereco",
             joinColumns = @JoinColumn(name = "pes_id"),
             inverseJoinColumns = @JoinColumn(name = "end_id")

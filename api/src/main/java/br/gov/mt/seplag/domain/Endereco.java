@@ -3,8 +3,6 @@ package br.gov.mt.seplag.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,12 +31,19 @@ public class Endereco {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cid_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Cidade cidade;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "enderecos")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }, mappedBy = "enderecos")
     private Set<Pessoa> pessoas = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "enderecos")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }, mappedBy = "enderecos")
     private Set<Unidade> unidades = new HashSet<>();
 }

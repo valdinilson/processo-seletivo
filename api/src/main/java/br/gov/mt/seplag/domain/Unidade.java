@@ -27,7 +27,11 @@ public class Unidade {
     @OneToMany(mappedBy = "unidade", fetch = FetchType.LAZY)
     private Set<Lotacao> lotacoes;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(name = "unidade_endereco",
             joinColumns = @JoinColumn(name = "unid_id"),
             inverseJoinColumns = @JoinColumn(name = "end_id")
