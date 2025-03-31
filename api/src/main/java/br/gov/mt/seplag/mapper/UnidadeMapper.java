@@ -1,9 +1,8 @@
 package br.gov.mt.seplag.mapper;
 
 import br.gov.mt.seplag.domain.Unidade;
-import br.gov.mt.seplag.request.UnidadeDTO;
-import br.gov.mt.seplag.response.ResponsePostDTO;
-import br.gov.mt.seplag.response.UnidadeResponseDTO;
+import br.gov.mt.seplag.request.UnidadeRequest;
+import br.gov.mt.seplag.response.UnidadeResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
@@ -15,9 +14,7 @@ import org.springframework.context.annotation.Primary;
         uses = EnderecoMapper.class)
 public interface UnidadeMapper {
 
-    Unidade toEntity(UnidadeDTO dto);
+    Unidade toEntity(UnidadeRequest unidadeRequest);
 
-    ResponsePostDTO toResponsePostDTO(Unidade unidade);
-
-    UnidadeResponseDTO toResponseDTO(Unidade entity);
+    UnidadeResponse toResponse(Unidade unidade);
 }

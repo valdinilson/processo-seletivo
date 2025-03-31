@@ -7,10 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class LotacaoResponseDTO {
+public class LotacaoResponse {
     private String dataLotacao;
     private String dataRemocao;
     private String portaria;
-    private PessoaResponseDTO pessoa;
-    private UnidadeResponseDTO unidade;
+    private PessoaResponse pessoa;
+    private UnidadeResponse unidade;
 }

@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ServidorEfetivoResponseDTO extends PessoaResponseDTO {
+public class ServidorEfetivoResponse extends PessoaResponse {
     private String matricula;
 }

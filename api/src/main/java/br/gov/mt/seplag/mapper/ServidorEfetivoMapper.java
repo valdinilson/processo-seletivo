@@ -1,10 +1,9 @@
 package br.gov.mt.seplag.mapper;
 
 import br.gov.mt.seplag.domain.ServidorEfetivo;
-import br.gov.mt.seplag.request.ServidorEfetivoDTO;
-import br.gov.mt.seplag.response.EfetivoUnidadeResponseDTO;
-import br.gov.mt.seplag.response.ResponsePostDTO;
-import br.gov.mt.seplag.response.ServidorEfetivoResponseDTO;
+import br.gov.mt.seplag.request.ServidorEfetivoRequest;
+import br.gov.mt.seplag.response.EfetivoUnidadeResponse;
+import br.gov.mt.seplag.response.ServidorEfetivoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -18,13 +17,11 @@ import org.springframework.context.annotation.Primary;
 public interface ServidorEfetivoMapper {
 
     @Mapping(target = "dataNascimento", dateFormat = "dd/MM/yyyy")
-    ServidorEfetivo toEntity(ServidorEfetivoDTO dto);
+    ServidorEfetivo toEntity(ServidorEfetivoRequest servidorEfetivoRequest);
 
     @Mapping(target = "unidade", ignore = true)
     @Mapping(target = "fotografias", ignore = true)
-    EfetivoUnidadeResponseDTO toEfetivoUnidadeResponseDTO(ServidorEfetivo efetivo);
+    EfetivoUnidadeResponse toEfetivoUnidadeResponse(ServidorEfetivo servidorEfetivo);
 
-    ResponsePostDTO toResponsePostDTO(ServidorEfetivo entity);
-
-    ServidorEfetivoResponseDTO toResponseDTO(ServidorEfetivo entity);
+    ServidorEfetivoResponse toResponse(ServidorEfetivo servidorEfetivo);
 }

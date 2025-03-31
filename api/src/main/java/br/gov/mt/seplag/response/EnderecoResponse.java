@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EnderecoResponseDTO {
+public class EnderecoResponse {
     private String logradouro;
     private Short numero;
     private String bairro;

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ServidorEfetivoDTO extends PessoaDTO {
+public class ServidorEfetivoRequest extends PessoaRequest {
     @NotBlank(message = "Preenchimento obrigatório")
     @Size(max = 20, message = "Tamanho máximo excedido")
     private String matricula;

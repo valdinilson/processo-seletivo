@@ -1,9 +1,8 @@
 package br.gov.mt.seplag.mapper;
 
 import br.gov.mt.seplag.domain.Endereco;
-import br.gov.mt.seplag.request.EnderecoDTO;
-import br.gov.mt.seplag.response.EnderecoResponseDTO;
-import br.gov.mt.seplag.response.ResponsePostDTO;
+import br.gov.mt.seplag.request.EnderecoRequest;
+import br.gov.mt.seplag.response.EnderecoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -16,7 +15,7 @@ public interface EnderecoMapper {
 
     @Mapping(target = "cidade.nome", source = "cidade")
     @Mapping(target = "cidade.uf", source = "uf")
-    Endereco toEntity(EnderecoDTO enderecoDTO);
+    Endereco toEntity(EnderecoRequest enderecoRequest);
 
     @Mapping(
             target = "logradouro",
@@ -24,7 +23,7 @@ public interface EnderecoMapper {
     )
     @Mapping(target = "cidade", source = "cidade.nome")
     @Mapping(target = "uf", source = "cidade.uf")
-    EnderecoResponseDTO toResponse(Endereco endereco);
+    EnderecoResponse toResponse(Endereco endereco);
 
     default String concatTipoLogradouro(String tipo, String logradouro) {
         if (tipo == null) tipo = "";
@@ -32,5 +31,4 @@ public interface EnderecoMapper {
         return (tipo + " " + logradouro).trim();
     }
 
-    ResponsePostDTO toResponsePostDTO(Endereco endereco);
 }

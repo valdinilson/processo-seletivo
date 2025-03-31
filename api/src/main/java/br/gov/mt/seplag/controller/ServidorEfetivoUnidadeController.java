@@ -1,7 +1,7 @@
 package br.gov.mt.seplag.controller;
 
 import br.gov.mt.seplag.helper.EfetivoUnidadeResponseHelper;
-import br.gov.mt.seplag.response.EfetivoUnidadeResponseDTO;
+import br.gov.mt.seplag.response.EfetivoUnidadeResponse;
 import br.gov.mt.seplag.service.ServidorEfetivoUnidadeService;
 import br.gov.mt.seplag.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,8 +32,8 @@ public class ServidorEfetivoUnidadeController {
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/unidades/{id}/efetivos")
-    public ResponseEntity<Page<EfetivoUnidadeResponseDTO>> buscarPorUnidadeId(@PathVariable Integer id, @ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<EfetivoUnidadeResponse>> buscarPorUnidadeId(@PathVariable Integer id, @ParameterObject Pageable pageable) {
         var pageServidores = servidorEfetivoUnidadeService.listarEfetivosPorUnidade(id, pageable);
-        return ResponseUtil.fromPage(efetivoUnidadeResponseHelper.toDTO(id, pageServidores));
+        return ResponseUtil.fromPage(efetivoUnidadeResponseHelper.toResponse(id, pageServidores));
     }
 }

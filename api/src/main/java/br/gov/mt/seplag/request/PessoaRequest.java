@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PessoaDTO {
+public class PessoaRequest {
 
     @NotBlank(message = "Preenchimento obrigatório")
     @Size(max = 200, message = "Tamanho máximo excedido")

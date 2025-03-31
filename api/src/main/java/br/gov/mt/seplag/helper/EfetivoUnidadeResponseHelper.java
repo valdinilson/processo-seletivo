@@ -3,7 +3,7 @@ package br.gov.mt.seplag.helper;
 import br.gov.mt.seplag.domain.ServidorEfetivo;
 import br.gov.mt.seplag.domain.Unidade;
 import br.gov.mt.seplag.mapper.ServidorEfetivoMapper;
-import br.gov.mt.seplag.response.EfetivoUnidadeResponseDTO;
+import br.gov.mt.seplag.response.EfetivoUnidadeResponse;
 import br.gov.mt.seplag.service.FotoService;
 import br.gov.mt.seplag.service.UnidadeService;
 import lombok.RequiredArgsConstructor;
@@ -18,14 +18,14 @@ public class EfetivoUnidadeResponseHelper {
     private final FotoService fotoService;
     private final ServidorEfetivoMapper mapper;
 
-    public Page<EfetivoUnidadeResponseDTO> toDTO(Integer id, Page<ServidorEfetivo> servidores) {
+    public Page<EfetivoUnidadeResponse> toResponse(Integer id, Page<ServidorEfetivo> pageServidores) {
         Unidade unidade = unidadeService.buscarPorId(id);
 
-        return servidores.map(servidor -> {
-            var servidorDTO = mapper.toEfetivoUnidadeResponseDTO(servidor);
-            servidorDTO.setUnidade(unidade.getNome());
-            servidorDTO.setFotografias(fotoService.obterUrlTemporaria(servidor));
-            return servidorDTO;
+        return pageServidores.map(servidor -> {
+            var servidorResponse = mapper.toEfetivoUnidadeResponse(servidor);
+            servidorResponse.setUnidade(unidade.getNome());
+            servidorResponse.setFotografias(fotoService.obterUrlTemporaria(servidor));
+            return servidorResponse;
         });
     }
 }

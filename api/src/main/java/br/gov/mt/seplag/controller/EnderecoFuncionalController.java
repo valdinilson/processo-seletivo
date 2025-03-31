@@ -1,7 +1,7 @@
 package br.gov.mt.seplag.controller;
 
 import br.gov.mt.seplag.mapper.EnderecoMapper;
-import br.gov.mt.seplag.response.EnderecoResponseDTO;
+import br.gov.mt.seplag.response.EnderecoResponse;
 import br.gov.mt.seplag.service.EnderecoFuncionalService;
 import br.gov.mt.seplag.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +31,7 @@ public class EnderecoFuncionalController {
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/servidores/efetivos/{nome}/enderecos-funcionais")
-    public ResponseEntity<Page<EnderecoResponseDTO>> listarEnderecoFuncionalServidores(@PathVariable String nome, @ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<EnderecoResponse>> listarEnderecoFuncionalServidores(@PathVariable String nome, @ParameterObject Pageable pageable) {
         return ResponseUtil.fromPage(enderecoFuncionalService.listarEnderecoFuncionalPorServidorNome(nome, pageable).map(enderecoMapper::toResponse));
     }
 

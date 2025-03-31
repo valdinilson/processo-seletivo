@@ -18,13 +18,13 @@ public class TokenService {
     private final AuthenticationManager authenticationManager;
 
     public String autenticar(AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsuario(), authRequest.getSenha()));
 
         if (!authentication.isAuthenticated()) {
             throw new UsernameNotFoundException("Usuário e/ou senha inválidos");
         }
 
-        return jwtService.generateToken(authRequest.getUsername());
+        return jwtService.generateToken(authRequest.getUsuario());
     }
 
     public String renovarToken(HttpServletRequest request) {

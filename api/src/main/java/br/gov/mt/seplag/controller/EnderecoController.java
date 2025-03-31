@@ -1,7 +1,7 @@
 package br.gov.mt.seplag.controller;
 
 import br.gov.mt.seplag.mapper.EnderecoMapper;
-import br.gov.mt.seplag.response.EnderecoResponseDTO;
+import br.gov.mt.seplag.response.EnderecoResponse;
 import br.gov.mt.seplag.service.EnderecoService;
 import br.gov.mt.seplag.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +31,7 @@ public class EnderecoController {
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/enderecos")
-    public ResponseEntity<Page<EnderecoResponseDTO>> listarTudo(@ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<EnderecoResponse>> listarTudo(@ParameterObject Pageable pageable) {
         return ResponseUtil.fromPage(enderecoService.listarTodos(pageable).map(enderecoMapper::toResponse));
     }
 
@@ -40,7 +40,7 @@ public class EnderecoController {
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/enderecos/{id}")
-    public ResponseEntity<EnderecoResponseDTO> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<EnderecoResponse> buscarPorId(@PathVariable Integer id) {
         return ResponseEntity.ok(enderecoMapper.toResponse(enderecoService.buscarPorId(id)));
     }
 

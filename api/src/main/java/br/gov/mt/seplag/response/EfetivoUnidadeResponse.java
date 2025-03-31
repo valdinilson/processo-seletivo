@@ -9,8 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UnidadeResponseDTO {
+public class EfetivoUnidadeResponse {
     private String nome;
-    private String sigla;
-    private List<EnderecoResponseDTO> enderecos;
+    private Integer idade;
+    private String unidade;
+    private List<FotoResponse> fotografias;
 }

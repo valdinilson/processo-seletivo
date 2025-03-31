@@ -9,11 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PessoaResponseDTO {
+public class PessoaResponse {
     private String nome;
     private String dataNascimento;
     private String sexo;
     private String nomeDaMae;
     private String nomeDoPai;
-    private List<EnderecoResponseDTO> enderecos;
+    private List<EnderecoResponse> enderecos;
 }

@@ -1,9 +1,8 @@
 package br.gov.mt.seplag.controller;
 
 import br.gov.mt.seplag.mapper.LotacaoMapper;
-import br.gov.mt.seplag.request.LotacaoDTO;
-import br.gov.mt.seplag.response.LotacaoResponseDTO;
-import br.gov.mt.seplag.response.ResponsePostDTO;
+import br.gov.mt.seplag.request.LotacaoRequest;
+import br.gov.mt.seplag.response.LotacaoResponse;
 import br.gov.mt.seplag.service.LotacaoService;
 import br.gov.mt.seplag.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.util.Map;
 
 @Tag(name = "Lotações")
 @RestController
@@ -32,8 +33,8 @@ public class LotacaoController {
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/lotacoes")
-    public ResponseEntity<Page<LotacaoResponseDTO>> listarTudo(@ParameterObject Pageable pageable) {
-        return ResponseUtil.fromPage(lotacaoService.listarTodos(pageable).map(lotacaoMapper::toResponseDTO));
+    public ResponseEntity<Page<LotacaoResponse>> listarTudo(@ParameterObject Pageable pageable) {
+        return ResponseUtil.fromPage(lotacaoService.listarTodos(pageable).map(lotacaoMapper::toResponse));
     }
 
     @Operation(summary = "Buscar uma lotação pelo ID")
@@ -41,16 +42,16 @@ public class LotacaoController {
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/lotacoes/{id}")
-    public ResponseEntity<LotacaoResponseDTO> buscarPorId(@PathVariable Integer id) {
-        return ResponseEntity.ok(lotacaoMapper.toResponseDTO(lotacaoService.buscarPorId(id)));
+    public ResponseEntity<LotacaoResponse> buscarPorId(@PathVariable Integer id) {
+        return ResponseEntity.ok(lotacaoMapper.toResponse(lotacaoService.buscarPorId(id)));
     }
 
     @Operation(summary = "Inserir uma lotação")
     @ApiResponse(responseCode = "201", description = "Sucesso")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping("/lotacoes")
-    public ResponseEntity<ResponsePostDTO> salvar(@RequestBody @Valid LotacaoDTO lotacaoDTO) {
-        var lotacao = lotacaoMapper.toEntity(lotacaoDTO);
+    public ResponseEntity<Object> salvar(@RequestBody @Valid LotacaoRequest lotacaoRequest) {
+        var lotacao = lotacaoMapper.toEntity(lotacaoRequest);
         var lotacaoSalva = lotacaoService.salvar(lotacao);
 
         var location = ServletUriComponentsBuilder
@@ -59,7 +60,7 @@ public class LotacaoController {
                 .buildAndExpand(lotacaoSalva.getId())
                 .toUri();
 
-        return ResponseEntity.created(location).body(lotacaoMapper.toResponsePostDTO(lotacaoSalva));
+        return ResponseEntity.created(location).body(Map.of("id", lotacaoSalva.getId()));
     }
 
     @Operation(summary = "Atualizar uma lotação")
@@ -67,8 +68,8 @@ public class LotacaoController {
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PutMapping("/lotacoes/{id}")
-    public ResponseEntity<Void> atualizar(@PathVariable Integer id, @RequestBody @Valid LotacaoDTO lotacaoDTO) {
-        var lotacao = lotacaoMapper.toEntity(lotacaoDTO);
+    public ResponseEntity<Void> atualizar(@PathVariable Integer id, @RequestBody @Valid LotacaoRequest lotacaoRequest) {
+        var lotacao = lotacaoMapper.toEntity(lotacaoRequest);
         lotacaoService.atualizar(id, lotacao);
         return ResponseEntity.noContent().build();
     }

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EnderecoDTO {
+public class EnderecoRequest {
     @NotBlank(message = "Preenchimento obrigatório")
     @Size(max = 50, message = "Tamanho máximo excedido")
     private String tipoLogradouro;

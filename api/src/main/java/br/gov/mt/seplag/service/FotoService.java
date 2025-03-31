@@ -4,7 +4,7 @@ import br.gov.mt.seplag.config.AppProperties;
 import br.gov.mt.seplag.domain.Foto;
 import br.gov.mt.seplag.domain.Pessoa;
 import br.gov.mt.seplag.repository.FotoPessoaRepository;
-import br.gov.mt.seplag.response.FotoResponseDTO;
+import br.gov.mt.seplag.response.FotoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,13 +33,13 @@ public class FotoService {
         return fotoPessoaRepository.saveAll(fotos);
     }
 
-    public List<FotoResponseDTO> obterUrlTemporaria(Pessoa pessoa) {
-        List<FotoResponseDTO> fotos = new ArrayList<>();
+    public List<FotoResponse> obterUrlTemporaria(Pessoa pessoa) {
+        List<FotoResponse> fotos = new ArrayList<>();
         pessoa.getFotos().forEach(foto -> {
-            FotoResponseDTO fotoResponseDTO = new FotoResponseDTO();
+            FotoResponse fotoResponse = new FotoResponse();
             storageService.obterUrlTemporaria(foto.getBucket(), foto.getHash())
-                    .ifPresent(fotoResponseDTO::setUrl);
-            fotos.add(fotoResponseDTO);
+                    .ifPresent(fotoResponse::setUrl);
+            fotos.add(fotoResponse);
         });
 
         return fotos;

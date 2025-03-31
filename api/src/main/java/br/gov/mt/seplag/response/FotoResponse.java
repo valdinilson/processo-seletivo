@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ServidorTemporarioResponseDTO extends PessoaResponseDTO {
-    private String dataAdmissao;
-    private String dataDemissao;
+public class FotoResponse {
+    private String url;
 }

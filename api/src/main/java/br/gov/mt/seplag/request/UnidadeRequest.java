@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UnidadeDTO {
+public class UnidadeRequest {
     @NotBlank(message = "Preenchimento obrigatório")
     @Size(max = 200, message = "Tamanho máximo excedido")
     private String nome;
