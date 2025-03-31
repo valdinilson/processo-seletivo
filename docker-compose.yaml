@@ -2,30 +2,31 @@ services:
   # ------------------------------------------------
   # CONTAINER DA API (SPRING BOOT)
   # ------------------------------------------------
-#  api:
-#    build:
-#      context: api
-#      dockerfile: Dockerfile
-#    container_name: processo-seletivo-api
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      # Spring Boot
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/${DB_MAIN}
-#      SPRING_DATASOURCE_USERNAME: ${DB_USER}
-#      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
-#      # Min.IO
-#      APP_MINIO_ENDPOINT: ${MINIO_URL}
-#      APP_MINIO_ACCESSKEY: ${MINIO_USER}
-#      APP_MINIO_SECRETKEY: ${MINIO_PASSWORD}
-#      APP_MINIO_BUCKETNAME: ${MINIO_BUCKETNAME}
-#    networks:
-#      - seletivo-network
-#    depends_on:
-#      postgresql:
-#        condition: service_healthy
-#      minio:
-#        condition: service_healthy
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    container_name: processo-seletivo-api
+    ports:
+      - "8080:8080"
+    environment:
+      # Spring Boot
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/${DB_MAIN}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      # Min.IO
+      APP_MINIO_ENDPOINT: ${MINIO_URL}
+      APP_MINIO_ACCESSKEY: ${MINIO_USER}
+      APP_MINIO_SECRETKEY: ${MINIO_PASSWORD}
+      APP_MINIO_BUCKETNAME: ${MINIO_BUCKETNAME}
+    networks:
+      - seletivo-network
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
   # ------------------------------------------------
   # CONTAINER MIN.IO - OBJECT STORAGE SYSTEM
   # ------------------------------------------------
@@ -67,38 +68,16 @@ services:
       - ./scripts:/docker-entrypoint-initdb.d
     networks:
       - seletivo-network
-      - pgadmin-bridge
     healthcheck:
       test: ["CMD-SHELL", "psql -U ${DB_USER} -d ${DB_MAIN} -c 'SELECT 1' || exit 1"]
-      #test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
       interval: 1s
       timeout: 5s
       retries: 10
     restart: always
 
-  # ------------------------------------------------
-  # CONTAINER PGADMIN - POSTGRESQL TOOLS
-  # ------------------------------------------------
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${ADMIN_MAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${ADMIN_PASSWORD}
-    ports:
-      - "8000:80"
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-    networks:
-      - pgadmin-bridge
-    depends_on:
-      - postgresql
-
 volumes:
   postgres-data:
-  pgadmin-data:
   minio-data:
 
 networks:
-  pgadmin-bridge:
   seletivo-network:
