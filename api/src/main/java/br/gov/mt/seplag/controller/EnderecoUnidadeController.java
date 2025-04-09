@@ -31,6 +31,8 @@ public class EnderecoUnidadeController {
     @Operation(summary = "Listar todos os endereços cadastrados para a Unidade")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/unidades/{id}/enderecos")
@@ -40,6 +42,8 @@ public class EnderecoUnidadeController {
 
     @Operation(summary = "Inserir um endereço da Unidade")
     @ApiResponse(responseCode = "201", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping("/unidades/{id}/enderecos")
@@ -58,6 +62,8 @@ public class EnderecoUnidadeController {
 
     @Operation(summary = "Atualizar um endereço da Unidade")
     @ApiResponse(responseCode = "204", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PutMapping("/unidades/{idUnidade}/enderecos/{idEndereco}")

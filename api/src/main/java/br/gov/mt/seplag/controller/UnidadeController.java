@@ -32,6 +32,8 @@ public class UnidadeController {
     @Operation(summary = "Listar todas as unidades cadastradas")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/unidades")
     public ResponseEntity<Page<UnidadeResponse>> listarTudo(@ParameterObject Pageable pageable) {
@@ -40,6 +42,8 @@ public class UnidadeController {
 
     @Operation(summary = "Buscar uma Unidade pelo ID")
     @ApiResponse(responseCode = "200", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/unidades/{id}")
@@ -49,6 +53,8 @@ public class UnidadeController {
 
     @Operation(summary = "Inserir uma Unidade")
     @ApiResponse(responseCode = "201", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping("/unidades")
     public ResponseEntity<Object> salvar(@RequestBody @Valid UnidadeRequest unidadeRequest) {
@@ -66,6 +72,8 @@ public class UnidadeController {
 
     @Operation(summary = "Atualizar uma Unidade")
     @ApiResponse(responseCode = "204", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PutMapping("/unidades/{id}")

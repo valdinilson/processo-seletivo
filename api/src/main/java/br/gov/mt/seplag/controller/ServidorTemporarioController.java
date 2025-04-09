@@ -32,6 +32,8 @@ public class ServidorTemporarioController {
     @Operation(summary = "Listar todos os Servidores Temporários")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/servidores/temporarios")
     public ResponseEntity<Page<ServidorTemporarioResponse>> listarTudo(@ParameterObject Pageable pageable) {
@@ -40,6 +42,8 @@ public class ServidorTemporarioController {
 
     @Operation(summary = "Buscar um Servidor Temporário pelo ID")
     @ApiResponse(responseCode = "200", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/servidores/temporarios/{id}")
@@ -49,6 +53,8 @@ public class ServidorTemporarioController {
 
     @Operation(summary = "Inserir um Servidor Temporário")
     @ApiResponse(responseCode = "201", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping("/servidores/temporarios")
     public ResponseEntity<Object> salvar(@RequestBody @Valid ServidorTemporarioRequest servidorTemporarioRequest) {
@@ -65,6 +71,8 @@ public class ServidorTemporarioController {
 
     @Operation(summary = "Atualizar um Servidor Temporário")
     @ApiResponse(responseCode = "204", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PutMapping("/servidores/temporarios/{id}")

@@ -35,9 +35,4 @@ public class UsuarioController {
                 .status(HttpStatus.CREATED)
                 .body(Map.of("mensagem", response));
     }
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello Word!!";
-    }
 }

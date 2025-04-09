@@ -29,6 +29,8 @@ public class EnderecoController {
     @Operation(summary = "Listar todos os endereços cadastrados")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/enderecos")
     public ResponseEntity<Page<EnderecoResponse>> listarTudo(@ParameterObject Pageable pageable) {
@@ -37,6 +39,8 @@ public class EnderecoController {
 
     @Operation(summary = "Buscar um endereço pelo ID")
     @ApiResponse(responseCode = "200", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/enderecos/{id}")

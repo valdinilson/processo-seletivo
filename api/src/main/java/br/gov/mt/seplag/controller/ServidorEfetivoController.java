@@ -32,6 +32,8 @@ public class ServidorEfetivoController {
     @Operation(summary = "Listar todos os Servidores Efetivos")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/servidores/efetivos")
     public ResponseEntity<Page<ServidorEfetivoResponse>> listarTudo(@ParameterObject Pageable pageable) {
@@ -40,6 +42,8 @@ public class ServidorEfetivoController {
 
     @Operation(summary = "Buscar um Servidor Efetivo pelo ID")
     @ApiResponse(responseCode = "200", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/servidores/efetivos/{id}")
@@ -49,6 +53,8 @@ public class ServidorEfetivoController {
 
     @Operation(summary = "Inserir um Servidor Efetivo")
     @ApiResponse(responseCode = "201", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping("/servidores/efetivos")
     public ResponseEntity<Object> salvar(@RequestBody @Valid ServidorEfetivoRequest servidorEfetivoRequest) {
@@ -65,6 +71,8 @@ public class ServidorEfetivoController {
 
     @Operation(summary = "Atualizar um Servidor Efetivo")
     @ApiResponse(responseCode = "204", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PutMapping("/servidores/efetivos/{id}")

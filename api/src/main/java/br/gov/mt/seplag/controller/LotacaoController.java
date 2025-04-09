@@ -31,6 +31,8 @@ public class LotacaoController {
     @Operation(summary = "Listar todas as Lotações cadastradas")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/lotacoes")
     public ResponseEntity<Page<LotacaoResponse>> listarTudo(@ParameterObject Pageable pageable) {
@@ -39,6 +41,8 @@ public class LotacaoController {
 
     @Operation(summary = "Buscar uma lotação pelo ID")
     @ApiResponse(responseCode = "200", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/lotacoes/{id}")
@@ -48,6 +52,8 @@ public class LotacaoController {
 
     @Operation(summary = "Inserir uma lotação")
     @ApiResponse(responseCode = "201", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping("/lotacoes")
     public ResponseEntity<Object> salvar(@RequestBody @Valid LotacaoRequest lotacaoRequest) {
@@ -65,6 +71,8 @@ public class LotacaoController {
 
     @Operation(summary = "Atualizar uma lotação")
     @ApiResponse(responseCode = "204", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PutMapping("/lotacoes/{id}")

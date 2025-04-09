@@ -26,6 +26,8 @@ public class FotoController {
 
     @Operation(summary = "Registrar o upload de um ou mais fotos para o Servidor")
     @ApiResponse(responseCode = "201", description = "Sucesso")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "404", description = "Não encontrada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @PostMapping(value = "/servidores/{id}/fotos", consumes = "multipart/form-data")

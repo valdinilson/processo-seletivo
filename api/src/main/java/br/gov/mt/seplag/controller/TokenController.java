@@ -35,6 +35,8 @@ public class TokenController {
     @Operation(summary = "Solicitar novo token", description = "Renova o token, caso o atual esteja válido")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "400", description = "Falha na requisição")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/token")
     public ResponseEntity<Object> renovarToken(HttpServletRequest request) {

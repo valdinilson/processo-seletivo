@@ -29,6 +29,8 @@ public class EnderecoFuncionalController {
     @Operation(summary = "Listar endereço funcional pelo nome ou parte do nome do Servidor Efetivo")
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @ApiResponse(responseCode = "204", description = "Sem Conteúdo")
+    @ApiResponse(responseCode = "401", description = "Autenticação necessária")
+    @ApiResponse(responseCode = "403", description = "Requisição não autorizada")
     @ApiResponse(responseCode = "500", description = "Erro Interno")
     @GetMapping("/servidores/efetivos/{nome}/enderecos-funcionais")
     public ResponseEntity<Page<EnderecoResponse>> listarEnderecoFuncionalServidores(@PathVariable String nome, @ParameterObject Pageable pageable) {
