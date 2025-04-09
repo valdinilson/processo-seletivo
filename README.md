@@ -3,11 +3,17 @@
 Este projeto é uma API REST desenvolvida com **Spring Boot 3**, **Java 21**, **JPA**, **MapStruct**, **Lombok** e **Min.IO**, com autenticação baseada em JWT.
 A solução propõe um CRUD sobre servidores efetivos e temporários, suas lotações, unidades, e entidades relacionadas.
 
+## PSS 02/2025/SEPLAG (Analista de TI - Perfil Júnior, Pleno, Sênior)
 ## 👤 Dados do Candidato
-
 - **Nome:** Valdinilson Lourenço da Cunha
+- **CPF:** 041.XXX.XXX-86
 - **E-mail:** valdinilson@gmail.com
-- **LinkedIn:** [https://www.linkedin.com/in/valdinilson](https://www.linkedin.com/in/valdinilson)
+
+| Inscrição | Perfil                                    | Nível  |
+|:----------|:------------------------------------------|:-------|
+| `9258`    | `Desenvolvedor Java (Back-End)`           | Sênior |
+| `9341`    | `Desenvolvedor Full Stack` | Sênior |
+| `9353` | `Desenvolvedor Java (Back-End)`           | Pleno  |
 
 ---
 
@@ -28,11 +34,9 @@ A solução propõe um CRUD sobre servidores efetivos e temporários, suas lota�
 
 ---
 
-## 📦 Como Executar a Aplicação
+## 📦 Como Executar a Aplicação via Docker Compose
 
-### ✅ Opção 1: Executar via Docker Compose (Recomendado)
-
-Esta aplicação pode ser executada com **todos os serviços em containers**:
+Esta aplicação será executada com **todos os serviços em containers**:
 
 #### Pré-requisitos
 
@@ -67,50 +71,6 @@ A seguinte stack será criada:
 
 ---
 
-### ⚙️ Opção 2: Executar Manualmente (sem Docker)
-
-### Pré-requisitos
-
-- Java 21+
-- Maven 3.8+
-- PostgreSQL rodando localmente, com banco de dados (`seletivodb`) criado previamente e schema conforme script `init.sql`** 
-- Min.IO em execução local ou remoto
-
-#### Passos:
-
-1. Clone o projeto
-
-```bash
-git clone https://github.com/valdinilson/processo-seletivo.git
-cd processo-seletivo/api
-```
-
-2. Configure o `application.yml` com os dados de conexão do banco e MinIO.
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://<HOST_DO_POSTGRESQL>>:<PORTA_DO_POSTGRESQL>/seletivodb
-    username: <SEU_USUARIO>
-    password: <SUA_SENHA>
-
-app:
-  minio:
-    endpoint: http://<HOST_DO_MINIO>:9000
-    accesskey: <SEU_USUARIO>
-    secretkey: <SUA_SENHA>
-    bucketname: <NOME_DO_BUCKET>
-```
-
-3. Compile e execute o projeto
-
-```bash
-mvn clean install
-mvn spring-boot:run
-```
-
----
-
 ## 🧪 Como Testar a API
 
 Utilize sua ferramenta de preferência, como: Postman, Insomnia, entre outras. 
@@ -125,10 +85,9 @@ http://localhost:8080/swagger-ui.html
 
 ### Pré-requisito
 
-- Ter um usuário cadastrado no sistema. Caso não tenha, use o endpoint `/api/usuarios/registrar` para cadastro.
+- Ter um usuário cadastrado no sistema. Caso não tenha, para fins de teste, use o endpoint `/api/usuarios/registrar` para cadastro.
 
 ### Autenticação
-
 
 1. Use o endpoint `/api/autenticar` para obter o token JWT.
 2. Em seguida, clique em **Authorize** no Swagger e insira em **Value**:
@@ -138,7 +97,6 @@ http://localhost:8080/swagger-ui.html
 ```
 
 3. Caso necessite renovar o token, solicite o novo token pelo endpoint `/api/token`. Desde que, o atual esteja válido. Caso contrário, uma nova autenticação é necessária.
-
 
 ### Endpoints:
 
@@ -233,7 +191,6 @@ A orquestração está feita com **Docker Compose**, e inclui:
 - API Java (Spring Boot)
 - PostgreSQL (última versão)
 - MinIO (armazenamento de fotos)
-- PGAdmin (interface de administração do banco)
 
 Todos os containers estão conectados por redes dedicadas, com variáveis centralizadas no arquivo `.env`.
 
