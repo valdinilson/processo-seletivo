@@ -28,9 +28,10 @@ A solução propõe um CRUD sobre servidores efetivos e temporários, suas lota�
 - Maven
 - JWT (Json Web Token)
 - Swagger / OpenAPI (Springdoc)
-- PostgreSQL (em container Docker)
-- Min.IO (em container Docker)
-- Docker & Docker Compose
+- PostgreSQL Latest (em container Docker)
+- Min.IO Latest (em container Docker)
+- Docker Latest
+- Docker Compose Latest
 
 ---
 
@@ -40,7 +41,8 @@ Esta aplicação será executada com **todos os serviços em containers**:
 
 #### Pré-requisitos
 
-- Docker e Docker Compose instalados
+- Docker 20.10 ou superior instalado
+- Docker Compose 2 ou superior instalado
 - Arquivo `.env` configurado com as variáveis necessárias (incluso no projeto)
 
 #### Passos:
@@ -56,7 +58,7 @@ cd processo-seletivo
 
 ```bash
 # Suba toda a stack
-docker compose up --build
+docker compose up -d
 ```
 
 A seguinte stack será criada:
